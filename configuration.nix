@@ -33,7 +33,15 @@ in
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  hardware.bluetooth = {
+  	enable = true;
+	powerOnBoot = true;
+	settings = {
+		General = {
+			Experimental = true;
+		};
+	};
+  };
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -88,7 +96,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  	rose-pine-cursor	# potentially will make it possible to get a new cursor, fingers crossed
+	bluez			# required for bluetooth file transfer
+	bluez-tools		# required for bluetooth file transfer
 	calibre			# E-Book Viewer
 	clipman			# clipboard manager for wayland. Supports copy/pase text only
 	fastfetch		# like neofetch, but supported
@@ -119,6 +128,8 @@ in
 	mpv 			# plays video files. super configurable
 	nemo-with-extensions	# file browser; fork of nautilus
 	neovim			# text editor for the mentally unsound programmer
+	obexfs			# tool for mounting obex-based devices (like bluetooth phones)
+	obexftp			# library and tool for accessing files on obex-based devices (c.f., up)
 	octaveFull		# yippee, octave!!
 	p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
@@ -185,7 +196,7 @@ in
 	settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --xsessions ${config.services.displayManager.sessionData.desktops}/share/xsessions --sessions  ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session --user-menu-min-uid 1000 --asterisks --power-shutdown 'shutdown -P now' --power-reboot 'shutdown -r now'";
 	};
   services.udisks2.enable = true;
- 
+  services.blueman.enable = true; 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
