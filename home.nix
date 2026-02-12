@@ -43,18 +43,16 @@
 	};
 	
 	home.pointerCursor = {
-		#hyprcursor = {
-		#	enable = true;
-		#	size = 32;
-		#};
-		package = pkgs.rose-pine-cursor;
-		size = 24;
-		name = "cursor-dark";
+		hyprcursor = {
+			enable = true;
+			size = 24;
+		};
+		name = "rose-pine-hyprcursor";
+		package = pkgs.rose-pine-hyprcursor;
 	};
 
 	home.packages = with pkgs; [
 		bat
 		fira-code
-		rose-pine-cursor
 	];
 }
