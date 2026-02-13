@@ -5,6 +5,12 @@
 { config, pkgs, ... }:
 let
 	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+	tex = (pkgs.texliveBasic.withPackages (
+		ps: with ps; [
+			background
+			everypage
+		])
+	);
 in
 {
 
@@ -136,8 +142,8 @@ in
 	ranger			# File browser inspired by vim
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
 	rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
-	texmaker		# LaTeX writer. Makes using LaTeX less painful.
-	texliveBasic		# Linux supported tex library
+	tex
+	texstudio		# LaTeX writer. Makes using LaTeX less painful.
 	udiskie			# An automatic USB mass storage device mounting daemon
 	unzip			# file decompression software
 	waybar			# Status bar for wayland window managers
