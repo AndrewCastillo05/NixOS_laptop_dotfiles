@@ -9,7 +9,7 @@ let
 		ps: with ps; [
 			background
 			everypage
-
+			lipsum
 		])
 	);
 in
