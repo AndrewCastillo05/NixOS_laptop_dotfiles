@@ -5,10 +5,11 @@
 { config, pkgs, ... }:
 let
 	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
-	tex = (pkgs.texliveBasic.withPackages (
+	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
 			background
 			everypage
+
 		])
 	);
 in
