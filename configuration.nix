@@ -134,6 +134,7 @@ in
 	p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
+	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
 	rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
 	texmaker		# LaTeX writer. Makes using LaTeX less painful.
 	texliveBasic		# Linux supported tex library

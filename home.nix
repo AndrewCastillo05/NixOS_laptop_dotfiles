@@ -42,6 +42,7 @@
 		};
 	};
 	
+
 	home.pointerCursor = {
 		hyprcursor = {
 			enable = true;
@@ -51,8 +52,17 @@
 		package = pkgs.rose-pine-hyprcursor;
 	};
 
+	gtk = {
+		cursorTheme = {
+			size = 24;
+			name = "rose-pine-cursor";
+			package = pkgs.rose-pine-cursor;
+		};
+	};
+
 	home.packages = with pkgs; [
 		bat
+		btop
 		fira-code
 	];
 }
