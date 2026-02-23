@@ -50,7 +50,7 @@
 			text-color = "#FF0000";
 			width = 300;
 			height = 100;
-			border-size = 1px;
+			border-size = 1;
 			border-radius = 0;
 			border-color = "#FF0000";
 			icon-border-radius = 0;
