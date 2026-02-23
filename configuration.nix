@@ -9,6 +9,7 @@ let
 		ps: with ps; [
 			background
 			everypage
+			lastpage
 			lipsum
 		])
 	);
@@ -103,6 +104,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+	arduino			# still not as good as nvim, but pretty close
 	bluez			# required for bluetooth file transfer
 	bluez-tools		# required for bluetooth file transfer
 	calibre			# E-Book Viewer
@@ -147,6 +149,7 @@ in
 	texstudio		# LaTeX writer. Makes using LaTeX less painful.
 	udiskie			# An automatic USB mass storage device mounting daemon
 	unzip			# file decompression software
+	vesta-viewer		# analytical chemical visualization software
 	waybar			# Status bar for wayland window managers
 	wget			# CLI utility for downloading files
 	wireplumber		# session/policy manager for pipewire

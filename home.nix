@@ -42,6 +42,23 @@
 		};
 	};
 	
+	services.mako = {
+		enable = true;
+		package = pkgs.mako;
+		settings = {
+			background-color = "#000000";
+			text-color = "#FF0000";
+			width = 300;
+			height = 100;
+			border-size = 1px;
+			border-radius = 0;
+			border-color = "#FF0000";
+			icon-border-radius = 0;
+			default-timeout = 3000;
+		};
+	};
+
+
 
 	home.pointerCursor = {
 		hyprcursor = {
