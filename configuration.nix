@@ -87,7 +87,6 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
   # List Fonts installed in system profile.
   fonts.packages = with pkgs; [
   	noto-fonts
@@ -107,6 +106,7 @@ in
 	arduino			# still not as good as nvim, but pretty close
 	bluez			# required for bluetooth file transfer
 	bluez-tools		# required for bluetooth file transfer
+	brightnessctl		# enable control of display brightness
 	calibre			# E-Book Viewer
 	clipman			# clipboard manager for wayland. Supports copy/pase text only
 	fastfetch		# like neofetch, but supported
@@ -124,7 +124,8 @@ in
 	hyprpaper		# wallpaper manager for hyprland
 	hyprcursor		# cursor customization software
 	hyprpolkitagent		# If a program needs root permissions, this daemon handles them
-	inkscape		# FOSS Vector Graphics development and editing software
+        inkscape		# FOSS Vector Graphics development and editing software
+        jmtpfs                  # a program for interacting with MTP devices (to start, use the command jmtpfs <mountpoint>, to end, use fusermount -u)
 	jre_minimal		# a minimal version of the Java Runtime Environment
 	jre8			# an open-source Java Development Kit
 	kitty			# terminal
@@ -138,16 +139,20 @@ in
 	nemo-with-extensions	# file browser; fork of nautilus
 	neovim			# text editor for the mentally unsound programmer
 	obexfs			# tool for mounting obex-based devices (like bluetooth phones)
-	obexftp			# library and tool for accessing files on obex-based devices (c.f., up)
+        obexftp			# library and tool for accessing files on obex-based devices (c.f., up)
+        obs-studio              # Open Broadcasting Software - FOSS software for recording and streaming
 	octaveFull		# yippee, octave!!
 	p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
 	rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
+	teams-for-linux		# microslop teams. unfortunately necessary
 	tex
 	texstudio		# LaTeX writer. Makes using LaTeX less painful.
+	transmission_4		# a fast, easy, and free BitTorrent client
 	udiskie			# An automatic USB mass storage device mounting daemon
+	ungoogled-chromium
 	unzip			# file decompression software
 	vesta-viewer		# analytical chemical visualization software
 	waybar			# Status bar for wayland window managers
@@ -174,22 +179,6 @@ in
 	defaultEditor = true;
 	viAlias = true;
 	vimAlias = true;
-	configure = {
-		customRC = ''
-			set runtimepath^=${pkgs.vimPlugins.jellybeans-vim}
-			colorscheme jellybeans
-			set number
-			set cc=80
-			set list
-			set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-      			if &diff
-        			colorscheme blue
-      			endif
-    			'';
-		packages.myVimPackage = with pkgs.vimPlugins; {
-			start = [ctrlp];
-		};
-	};
   };
 
   # enable Hyprland

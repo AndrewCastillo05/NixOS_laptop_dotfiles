@@ -5,6 +5,30 @@
 	home.homeDirectory = "/home/god";
 	home.stateVersion = "25.11";
 
+	programs.neovim = {
+		enable = true;
+		defaultEditor = true;
+		extraConfig = ''
+				set number
+				set cc=80
+				set list
+				set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+				if &diff
+					colorscheme blue
+				endif
+				'';
+		plugins = with pkgs.vimPlugins; [ 
+			yankring
+			vim-nix
+			{	
+				plugin = vim-startify;
+				config = "let g:startify_change_to_vcs_root = 0";
+			}
+			ctrlp
+			nvim-tree-lua
+		];
+	};
+
 	programs.bash = {
 		enable = true;
 		shellAliases = {
