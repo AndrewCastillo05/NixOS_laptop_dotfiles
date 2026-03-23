@@ -103,7 +103,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	arduino			# still not as good as nvim, but pretty close
+    arduino			# still not as good as nvim, but pretty close
+    bitwarden-desktop           # FOSS desktop password manager
 	bluez			# required for bluetooth file transfer
 	bluez-tools		# required for bluetooth file transfer
 	brightnessctl		# enable control of display brightness
@@ -146,7 +147,8 @@ in
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
-	rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
+        rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
+        stirling-pdf            # A FOSS pdf editor suite, built as a web-app
 	teams-for-linux		# microslop teams. unfortunately necessary
 	tex
 	texstudio		# LaTeX writer. Makes using LaTeX less painful.
