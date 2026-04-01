@@ -17,14 +17,8 @@
 		];
 	in {
 		nixosConfigurations = {
-			hostname: = nixpkgs.lib.nixosSystem {
-				modules = [
-					(import 
-					./configuration.nix
-					hostname
-					flake-overlays
-					)
-				];
+			HOSTNAME = nixpkgs.lib.nixosSystem {
+				modules = [ (import ./configuration.nix flake-overlays) ];
 			};
 		};
 	};

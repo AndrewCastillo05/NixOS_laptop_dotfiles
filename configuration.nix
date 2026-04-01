@@ -2,6 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+# all overlays given by flakes
+flake-overlays:
+
 { config, pkgs, ... }:
 let
 	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
@@ -103,7 +106,13 @@ in
 	font-awesome
   ];
 	# Overlays for packages
-	nixpkgs.overlays = flake-overlays;
+nixpkgs.overlays = [
+	(
+		final: prev: {	
+	
+		}
+	)
+] ++ flake-overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
