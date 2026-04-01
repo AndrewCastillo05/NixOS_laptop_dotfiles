@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 let
-	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
 			background
@@ -50,6 +50,9 @@ in
 		};
 	};
   };
+  # Enable experimental features
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -99,12 +102,15 @@ in
 	proggyfonts
 	font-awesome
   ];
+	# Overlays for packages
+	nixpkgs.overlays = flake-overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    arduino			# still not as good as nvim, but pretty close
-    bitwarden-desktop           # FOSS desktop password manager
+  	git			# Send files to the angels in the sky. must be first for flakes to work
+    	arduino			# still not as good as nvim, but pretty close
+    	bitwarden-desktop	# FOSS desktop password manager
 	bluez			# required for bluetooth file transfer
 	bluez-tools		# required for bluetooth file transfer
 	brightnessctl		# enable control of display brightness
@@ -114,7 +120,6 @@ in
 	feh			# CLI focused Image Viewer
 	firefox			# Spyware
 	gimp			# GNU Image Manipulation Program; photoshop without painting or a price
-	git			# Send your files to the little angels in the sky
 	gnvim			# a gui version of neovim. good for use with octave
 	greetd			# login manager alternative to ly
 	htop			# CLI process viewer
@@ -135,15 +140,17 @@ in
 	libreoffice		# A FOSS office suite
 	librewolf		# Firefox without the spyware
 	logseq			# note taking application for the mentally unsound
-	mako 			# starts the mako daemon, which is used to push notifications
+        mako 			# starts the mako daemon, which is used to push notifications
+        matlab                  # like octave, but awful
 	mpv 			# plays video files. super configurable
 	nemo-with-extensions	# file browser; fork of nautilus
 	neovim			# text editor for the mentally unsound programmer
 	obexfs			# tool for mounting obex-based devices (like bluetooth phones)
         obexftp			# library and tool for accessing files on obex-based devices (c.f., up)
         obs-studio              # Open Broadcasting Software - FOSS software for recording and streaming
-	octaveFull		# yippee, octave!!
-	p7zip			# software for compressing and uncompressing 7zip archives
+        octaveFull		# yippee, octave!!
+        octavePackages.linear-algebra # linear algebra package for octave
+        p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
