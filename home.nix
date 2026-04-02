@@ -35,7 +35,7 @@
 	programs.bash = {
 		enable = true;
 		shellAliases = {
-			nrs = "sudo nixos-rebuild switch";
+			nrs = "sudo nixos-rebuild switch --impure";
 		};
 		initExtra = ''
 			export PS1='\u in \W \\$ '
@@ -96,13 +96,6 @@
 		package = pkgs.rose-pine-hyprcursor;
 	};
 
-	gtk = {
-		cursorTheme = {
-			size = 24;
-			name = "rose-pine-cursor";
-			package = pkgs.rose-pine-cursor;
-		};
-	};
 
 	home.packages = with pkgs; [
 		bat

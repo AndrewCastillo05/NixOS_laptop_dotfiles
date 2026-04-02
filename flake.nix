@@ -1,27 +1,44 @@
 {
+	description = "NixOS configuration";
 	inputs = {
-		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+		
+		# Unofficial NixOS Packages sources
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-		nix-matlab = {
+
+		# Home-Manager
+		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+		home-manager = {
+			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
-			url = "gitlab:doronbehar/nix-matlab";
+		};
+
+		# Matlab functionality patch
+		nix-matlab = {
+			url = "gitlab:doronbehar/nix-matlab"; 
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		# ...
 	};
 	
-	# ...
-
-	outputs = { self, nixpkgs, nix-matlab, ... }@inputs:
+	outputs = inputs@{ self, nixpkgs, home-manager, nix-matlab, ... }:
 	let
-		flake-overlays = [
-			nix-matlab.overlay
-		];
+		flake-overlays = [ nix-matlab.overlay ];
 	in {
 		nixosConfigurations = {
 			god = nixpkgs.lib.nixosSystem {
-				modules = [ ( import
-					./configuration.nix
-					flake-overlays )
+				system = "x86_64-linux";
+				modules = [  
+					(import ./configuration.nix flake-overlays)
+					home-manager.nixosModules.default
+					{
+						home-manager = {
+							useGlobalPkgs = true;
+							useUserPackages = true;
+							backupFileExtension = "backup";
+							users.god = import ./home.nix;
+						};
+						
+					}
 				];
 			};
 		};

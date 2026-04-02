@@ -5,9 +5,8 @@
 # all overlays given by flakes
 flake-overlays:
 
-{ config, pkgs, ... }:
+{ config, pkgs, options, lib, ... }:
 let
-	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
 			background
@@ -19,20 +18,13 @@ let
 in
 {
 
-  # nixos nvidia driver hardware configuration added via nixos-hardware channel following guide at
-  # https://gitub.com/NixOS/nixos-hardware/tree/master
-  imports =
-    [ # Include the results of the hardware scan.
-      <nixos-hardware/lenovo/thinkpad/p1/3th-gen>
-      ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
-    ];
+# nixos nvidia driver hardware configuration added via nixos-hardware channel following guide at
+# https://gitub.com/NixOS/nixos-hardware/tree/master
+imports =
+[
+	./hardware-configuration.nix
+];
 
-  # setup home-manager variables. will import home.nix for further specs
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.backupFileExtension = "backup";
-  home-manager.users.god = import ./home.nix;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -106,13 +98,7 @@ in
 	font-awesome
   ];
 	# Overlays for packages
-nixpkgs.overlays = [
-	(
-		final: prev: {	
-	
-		}
-	)
-] ++ flake-overlays;
+nixpkgs.overlays = flake-overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
