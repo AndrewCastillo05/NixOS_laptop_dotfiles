@@ -4,7 +4,6 @@
 
 # all overlays given by flakes
 flake-overlays:
-
 { config, pkgs, options, lib, ... }:
 let
 	tex = (pkgs.texliveMedium.withPackages (
@@ -23,6 +22,7 @@ in
 imports =
 [
 	./hardware-configuration.nix
+	./nvim.nix
 ];
 
 
@@ -177,13 +177,6 @@ nixpkgs.overlays = flake-overlays;
 	mplus-outline-fonts.githubRelease	# A large collection of fonts for typesetting
 	dina-font		# an old-school font for old-school applications
   ];
-
-  programs.neovim = {
-  	enable = true;
-	defaultEditor = true;
-	viAlias = true;
-	vimAlias = true;
-  };
 
   # enable Hyprland
   programs.hyprland.enable = true;

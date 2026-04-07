@@ -27,7 +27,7 @@
 		nixosConfigurations = {
 			god = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
-				modules = [  
+				modules = [
 					(import ./configuration.nix flake-overlays)
 					home-manager.nixosModules.default
 					{
