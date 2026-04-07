@@ -22,7 +22,7 @@ in
 imports =
 [
 	./hardware-configuration.nix
-	./nvim.nix
+	./neovim.nix
 ];
 
 
