@@ -140,12 +140,17 @@ imports =
         obs-studio              # Open Broadcasting Software - FOSS software for recording and streaming
         octaveFull		# yippee, octave!!
         octavePackages.linear-algebra # linear algebra package for octave
+	octavePackages.sockets	# needed for Scilab Cosim
+	#octavePackages.sci_cosim# allows simulink like visual work - doesn't exist, might need to build
+	octavePackages.signal	# signal package for octave. for processing signals.
+	octavePackages.image	# image processing toolkit for octave
         p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
 	ripgrep			# a fancy version of grep
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
         rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
+	scilab-bin
         stirling-pdf            # A FOSS pdf editor suite, built as a web-app
 	teams-for-linux		# microslop teams. unfortunately necessary
 	tex
@@ -175,6 +180,8 @@ imports =
   ];
 
   programs.neovim.enable = true;
+  programs.neovim.withRuby = false;
+  programs.neovim.withPython3 = false;
 
   # enable Hyprland
   programs.hyprland.enable = true;
