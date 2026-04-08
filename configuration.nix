@@ -2,8 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-# all overlays given by flakes
-flake-overlays:
 { config, pkgs, options, lib, ... }:
 let
 	tex = (pkgs.texliveMedium.withPackages (
@@ -22,7 +20,6 @@ in
 imports =
 [
 	./hardware-configuration.nix
-	./neovim.nix
 ];
 
 
@@ -97,8 +94,6 @@ imports =
 	proggyfonts
 	font-awesome
   ];
-	# Overlays for packages
-nixpkgs.overlays = flake-overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -108,6 +103,7 @@ nixpkgs.overlays = flake-overlays;
     	bitwarden-desktop	# FOSS desktop password manager
 	bluez			# required for bluetooth file transfer
 	bluez-tools		# required for bluetooth file transfer
+	bottles			# hopefully this will allow that godforsaken matlab to function
 	brightnessctl		# enable control of display brightness
 	calibre			# E-Book Viewer
 	clipman			# clipboard manager for wayland. Supports copy/pase text only
@@ -136,7 +132,6 @@ nixpkgs.overlays = flake-overlays;
 	librewolf		# Firefox without the spyware
 	logseq			# note taking application for the mentally unsound
         mako 			# starts the mako daemon, which is used to push notifications
-        matlab                  # like octave, but awful
 	mpv 			# plays video files. super configurable
 	nemo-with-extensions	# file browser; fork of nautilus
 	neovim			# text editor for the mentally unsound programmer
@@ -148,6 +143,7 @@ nixpkgs.overlays = flake-overlays;
         p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
+	ripgrep			# a fancy version of grep
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
         rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
         stirling-pdf            # A FOSS pdf editor suite, built as a web-app
@@ -177,6 +173,8 @@ nixpkgs.overlays = flake-overlays;
 	mplus-outline-fonts.githubRelease	# A large collection of fonts for typesetting
 	dina-font		# an old-school font for old-school applications
   ];
+
+  programs.neovim.enable = true;
 
   # enable Hyprland
   programs.hyprland.enable = true;

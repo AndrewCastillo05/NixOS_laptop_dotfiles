@@ -12,23 +12,16 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-		# Matlab functionality patch
-		nix-matlab = {
-			url = "gitlab:doronbehar/nix-matlab"; 
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
 		# ...
 	};
 	
-	outputs = inputs@{ self, nixpkgs, home-manager, nix-matlab, ... }:
-	let
-		flake-overlays = [ nix-matlab.overlay ];
-	in {
+	outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+	{
 		nixosConfigurations = {
 			god = nixpkgs.lib.nixosSystem {
 				system = "x86_64-linux";
 				modules = [
-					(import ./configuration.nix flake-overlays)
+					./configuration.nix
 					home-manager.nixosModules.default
 					{
 						home-manager = {
