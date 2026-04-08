@@ -140,8 +140,6 @@ imports =
         obs-studio              # Open Broadcasting Software - FOSS software for recording and streaming
         octaveFull		# yippee, octave!!
         octavePackages.linear-algebra # linear algebra package for octave
-	octavePackages.sockets	# needed for Scilab Cosim
-	#octavePackages.sci_cosim# allows simulink like visual work - doesn't exist, might need to build
 	octavePackages.signal	# signal package for octave. for processing signals.
 	octavePackages.image	# image processing toolkit for octave
         p7zip			# software for compressing and uncompressing 7zip archives
