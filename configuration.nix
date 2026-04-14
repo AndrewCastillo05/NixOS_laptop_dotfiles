@@ -7,6 +7,7 @@ let
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
 			background
+			enumitem
 			everypage
 			lastpage
 			lipsum
@@ -106,6 +107,7 @@ imports =
 	bottles			# hopefully this will allow that godforsaken matlab to function
 	brightnessctl		# enable control of display brightness
 	calibre			# E-Book Viewer
+	cbonsai			# just a fun bonsai tree generator
 	clipman			# clipboard manager for wayland. Supports copy/pase text only
 	fastfetch		# like neofetch, but supported
 	feh			# CLI focused Image Viewer
