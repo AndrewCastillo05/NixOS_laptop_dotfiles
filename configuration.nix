@@ -167,6 +167,7 @@ imports =
 	xapp-symbolic-icons	# XSI icons - an alternative to adwaita icons for non-gnome applications
 	xdg-desktop-portal-hyprland	# xdg-desktop-portal backend for Hyprland
 	zip			# file compression software
+	zotero			# citation management software
 	
 
 	font-awesome		# font package filled with symbols for applications
