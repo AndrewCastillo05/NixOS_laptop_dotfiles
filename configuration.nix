@@ -146,6 +146,8 @@ imports =
 	octavePackages.image	# image processing toolkit for octave
         p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
+	python314Packages.orange-canvas-core # for making gui's for editing workflows
+	python314Packages.orange3 # Data mining and visualization tool
 	ranger			# File browser inspired by vim
 	ripgrep			# a fancy version of grep
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
