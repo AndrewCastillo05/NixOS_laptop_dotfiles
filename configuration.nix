@@ -100,7 +100,7 @@ imports =
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   	git			# Send files to the angels in the sky. must be first for flakes to work
-    	arduino			# still not as good as nvim, but pretty close
+    	arduino-ide		# still not as good as nvim, but pretty close
     	bitwarden-desktop	# FOSS desktop password manager
 	bluez			# required for bluetooth file transfer
 	bluez-tools		# required for bluetooth file transfer
@@ -157,6 +157,7 @@ imports =
 	teams-for-linux		# microslop teams. unfortunately necessary
 	tex
 	texstudio		# LaTeX writer. Makes using LaTeX less painful.
+	tio			# terminal emulator for embedded devs and hackers.
 	transmission_4		# a fast, easy, and free BitTorrent client
 	udiskie			# An automatic USB mass storage device mounting daemon
 	ungoogled-chromium
