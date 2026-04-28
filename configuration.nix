@@ -6,8 +6,10 @@
 let
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
+			babel
 			background
 			biblatex
+			csquotes
 			enumitem
 			everypage
 			lastpage
