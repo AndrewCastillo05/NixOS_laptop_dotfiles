@@ -6,6 +6,7 @@
 let
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
+			apa7
 			babel
 			background
 			biblatex
@@ -108,10 +109,11 @@ services.xserver.enable = true;
   environment.systemPackages = with pkgs; [
   	git			# Send files to the angels in the sky. must be first for flakes to work
     	arduino-ide		# still not as good as nvim, but pretty close
+	bintools		# low level binary manipulation tools
+	binutils		# low level binary manipulation tools
     	bitwarden-desktop	# FOSS desktop password manager
 	bluez			# required for bluetooth file transfer
 	bluez-tools		# required for bluetooth file transfer
-	bottles			# hopefully this will allow that godforsaken matlab to function
 	brightnessctl		# enable control of display brightness
 	calibre			# E-Book Viewer
 	cbonsai			# just a fun bonsai tree generator
@@ -193,6 +195,7 @@ services.xserver.enable = true;
   programs.neovim.enable = true;
   programs.neovim.withRuby = false;
   programs.neovim.withPython3 = false;
+  programs.neovim.plugins.PLUGIN.type = "viml";
 
   # enable Hyprland
   programs.hyprland.enable = true;
@@ -211,6 +214,7 @@ services.xserver.enable = true;
 	};
   services.udisks2.enable = true;
   services.blueman.enable = true; 
+  services.xrdp.enable = true;
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
