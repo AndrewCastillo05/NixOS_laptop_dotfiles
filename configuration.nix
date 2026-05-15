@@ -7,14 +7,27 @@ let
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
 			apa7
+			apa
 			babel
 			background
+			biber
 			biblatex
+			biblatex-apa
+			biblatex-ext
+			biblatex-mla
+			biblatex-ieee
+			biblatex-trad
+			biblatex-nature
+			biblatex-science
+			biblatex-software
 			csquotes
+			endfloat
 			enumitem
 			everypage
 			lastpage
 			lipsum
+			scalerel
+			threeparttable
 		])
 	);
 in
@@ -118,6 +131,7 @@ services.xserver.enable = true;
 	calibre			# E-Book Viewer
 	cbonsai			# just a fun bonsai tree generator
 	clipman			# clipboard manager for wayland. Supports copy/pase text only
+	dropbox			# evil github alternative. probably less evil
 	fastfetch		# like neofetch, but supported
 	feh			# CLI focused Image Viewer
 	firefox			# Spyware
@@ -143,7 +157,7 @@ services.xserver.enable = true;
 	librewolf		# Firefox without the spyware
 	logseq			# note taking application for the mentally unsound
         mako 			# starts the mako daemon, which is used to push notifications
-	mpv 			# plays video files. super configurable
+	# mpv 			#currently broken because of deno dependency		 plays video files. super configurable
 	nemo-with-extensions	# file browser; fork of nautilus
 	neovim			# text editor for the mentally unsound programmer
 	obexfs			# tool for mounting obex-based devices (like bluetooth phones)
@@ -155,20 +169,17 @@ services.xserver.enable = true;
 	octavePackages.image	# image processing toolkit for octave
         p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
-#	python314Packages.orange3 # Data mining and visualization tool - currently broken
 	ranger			# File browser inspired by vim
 	ripgrep			# a fancy version of grep
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
         rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
-	scilab-bin
         stirling-pdf            # A FOSS pdf editor suite, built as a web-app
 	teams-for-linux		# microslop teams. unfortunately necessary
-	tex
+	tex			# texlive medium with some additional packages
 	texstudio		# LaTeX writer. Makes using LaTeX less painful.
 	tio			# terminal emulator for embedded devs and hackers.
 	transmission_4		# a fast, easy, and free BitTorrent client
 	udiskie			# An automatic USB mass storage device mounting daemon
-	ungoogled-chromium
 	unzip			# file decompression software
 	usbutils		# really just for access to lsusb
 	vesta-viewer		# analytical chemical visualization software
@@ -195,7 +206,6 @@ services.xserver.enable = true;
   programs.neovim.enable = true;
   programs.neovim.withRuby = false;
   programs.neovim.withPython3 = false;
-  programs.neovim.plugins.PLUGIN.type = "viml";
 
   # enable Hyprland
   programs.hyprland.enable = true;

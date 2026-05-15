@@ -39,9 +39,6 @@
 			YankRing-vim
 			vim-fugitive
 			vim-nix
-			{ plugin = vim-startify;
-			config = "let g:startify_change_to_vsc_root = 0";
-			}
 		];
 	};
 	
@@ -49,7 +46,7 @@
 	programs.bash = {
 		enable = true;
 		shellAliases = {
-			nrs = "sudo nixos-rebuild switch --impure";
+			nrs = "sudo nixos-rebuild switch --impure --verbose";
 		};
 		initExtra = ''
 			export PS1='\u in \W \\$ '
