@@ -1,7 +1,6 @@
 { config, pkgs, ...}:
 
 {
-
 	home.username = "god";
 	home.homeDirectory = "/home/god";
 	home.stateVersion = "25.11";
@@ -46,7 +45,7 @@
 	programs.bash = {
 		enable = true;
 		shellAliases = {
-			nrs = "sudo nixos-rebuild switch --impure --verbose";
+			nrs = "sudo nixos-rebuild switch --verbose";
 		};
 		initExtra = ''
 			export PS1='\u in \W \\$ '
