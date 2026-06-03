@@ -4,7 +4,7 @@
 
 { config, pkgs, options, lib, ... }:
 let
-	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/relase-25.11.tar.gz";
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/relase-26.05.tar.gz";
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
 			apa7
@@ -45,6 +45,7 @@ imports =
 # Bootloader.
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
+boot.extraModprobeConfig = "i915.enable_psr=0";
 
 networking.hostName = "god"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -99,7 +100,7 @@ services.xserver.xkb = {
 users.users.god = {
   isNormalUser = true;
   description = "overlord";
-  extraGroups = [ "networkmanager" "wheel" ];
+  extraGroups = [ "networkmanager" "wheel" "input" ];
   packages = with pkgs; [];
 };
 
@@ -132,12 +133,12 @@ environment.systemPackages = with pkgs; [
 	calibre			# E-Book Viewer
 	cbonsai			# just a fun bonsai tree generator
 	clipman			# clipboard manager for wayland. Supports copy/pase text only
-	dropbox			# evil github alternative. probably less evil
 	fastfetch		# like neofetch, but supported
 	feh			# CLI focused Image Viewer
 	firefox			# Spyware
 	gimp			# GNU Image Manipulation Program; photoshop without painting or a price
-	gnvim			# a gui version of neovim. good for use with octave
+	gpauth			# potentially a way to connect to SDSMT vpn
+	gpclient		# please let me connect to the SDSMT VPN :0
 	greetd			# login manager alternative to ly
 	htop			# CLI process viewer
 	hunspell		# package used for spell-checking in libreoffice
@@ -147,21 +148,17 @@ environment.systemPackages = with pkgs; [
 	hyprpaper		# wallpaper manager for hyprland
 	hyprcursor		# cursor customization software
 	hyprpolkitagent		# If a program needs root permissions, this daemon handles them
-        inkscape		# FOSS Vector Graphics development and editing software
         jmtpfs                  # a program for interacting with MTP devices (to start, use the command jmtpfs <mountpoint>, to end, use fusermount -u)
-	jre_minimal		# a minimal version of the Java Runtime Environment
-	jre8			# an open-source Java Development Kit
+	kdePackages.dolphin	# a file explorer
 	kitty			# terminal
-	krita			# FOSS painting software
-	krusader		# File browser made for use in the gnome DE, though works here too
 	libreoffice		# A FOSS office suite
 	librewolf		# Firefox without the spyware
 	logseq			# note taking application for the mentally unsound
         mako 			# starts the mako daemon, which is used to push notifications
-	# mpv 			#currently broken because of deno dependency		 plays video files. super configurable
+	mpv 			# plays video files. super configurable
 	nemo-with-extensions	# file browser; fork of nautilus
 	neovim			# text editor for the mentally unsound programmer
-	obexfs			# tool for mounting obex-based devices (like bluetooth phones)
+	newsboat		# an RSS/Atom feed reader for the console
         obexftp			# library and tool for accessing files on obex-based devices (c.f., up)
         obs-studio              # Open Broadcasting Software - FOSS software for recording and streaming
         octaveFull		# yippee, octave!!
@@ -171,7 +168,7 @@ environment.systemPackages = with pkgs; [
         p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
-	ripgrep			# a fancy version of grep
+	remmina			# RDP Client written in GTK
 	rose-pine-cursor	# a backup cursor, for when hyprcursor is being a baby (always)
         rose-pine-hyprcursor	# A basic cursor for use with the hyprcursor package
         stirling-pdf            # A FOSS pdf editor suite, built as a web-app
@@ -183,7 +180,6 @@ environment.systemPackages = with pkgs; [
 	udiskie			# An automatic USB mass storage device mounting daemon
 	unzip			# file decompression software
 	usbutils		# really just for access to lsusb
-	vesta-viewer		# analytical chemical visualization software
 	waybar			# Status bar for wayland window managers
 	wget			# CLI utility for downloading files
 	wireplumber		# session/policy manager for pipewire
@@ -203,6 +199,11 @@ environment.systemPackages = with pkgs; [
 	mplus-outline-fonts.githubRelease	# A large collection of fonts for typesetting
 	dina-font		# an old-school font for old-school applications
 ];
+
+nixpkgs.config.permittedInsecurePackages = [
+	"electron-39.8.10"
+];
+
 
 programs.neovim.enable = true;
 programs.neovim.withRuby = false;
