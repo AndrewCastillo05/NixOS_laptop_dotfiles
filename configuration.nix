@@ -4,7 +4,6 @@
 
 { config, pkgs, options, lib, ... }:
 let
-	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/relase-26.05.tar.gz";
 	tex = (pkgs.texliveMedium.withPackages (
 		ps: with ps; [
 			apa7
@@ -38,7 +37,9 @@ in
 # https://gitub.com/NixOS/nixos-hardware/tree/master
 imports =
 [
+	<nixos-hardware/lenovo/thinkpad/p1/3th-gen>
 	./hardware-configuration.nix
+	./home-manager.nix
 ];
 
 
@@ -137,8 +138,8 @@ environment.systemPackages = with pkgs; [
 	feh			# CLI focused Image Viewer
 	firefox			# Spyware
 	gimp			# GNU Image Manipulation Program; photoshop without painting or a price
-	gpauth			# potentially a way to connect to SDSMT vpn
-	gpclient		# please let me connect to the SDSMT VPN :0
+	gpauth			# potentially required to connect to SDSMT VPN
+	gpclient		# required to connect to SDSMT VPN
 	greetd			# login manager alternative to ly
 	htop			# CLI process viewer
 	hunspell		# package used for spell-checking in libreoffice
@@ -158,6 +159,8 @@ environment.systemPackages = with pkgs; [
 	mpv 			# plays video files. super configurable
 	nemo-with-extensions	# file browser; fork of nautilus
 	neovim			# text editor for the mentally unsound programmer
+	networkmanagerapplet	# GUI interface for network manager
+	networkmanager-openconnect # openconnect extension for network manager
 	newsboat		# an RSS/Atom feed reader for the console
         obexftp			# library and tool for accessing files on obex-based devices (c.f., up)
         obs-studio              # Open Broadcasting Software - FOSS software for recording and streaming
@@ -165,6 +168,7 @@ environment.systemPackages = with pkgs; [
         octavePackages.linear-algebra # linear algebra package for octave
 	octavePackages.signal	# signal package for octave. for processing signals.
 	octavePackages.image	# image processing toolkit for octave
+	openconnect		# Required for accessing Palo Alto GlobalProtect VPN
         p7zip			# software for compressing and uncompressing 7zip archives
 	pipewire		# API for dealing with multimedia pipelines
 	ranger			# File browser inspired by vim
@@ -204,12 +208,9 @@ nixpkgs.config.permittedInsecurePackages = [
 	"electron-39.8.10"
 ];
 
-
 programs.neovim.enable = true;
 programs.neovim.withRuby = false;
 programs.neovim.withPython3 = false;
-
-# enable Hyprland
 programs.hyprland.enable = true;
 
 #started in user sessions.
